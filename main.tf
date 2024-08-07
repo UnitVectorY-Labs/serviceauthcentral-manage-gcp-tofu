@@ -14,7 +14,7 @@ resource "google_project_service" "firestore" {
 # Service account for Cloud Run services
 resource "google_service_account" "cloud_run_sa" {
   project      = var.project_id
-  account_id   = "sac-manage-cr-${var.name}"
+  account_id   = "sacmcr-${var.name}"
   display_name = "serviceauthcentral Cloud Run (${var.name}) service account"
 }
 
