@@ -10,7 +10,7 @@ variable "name" {
 }
 
 variable "project_id" {
-  description = "The ID of the GCP project"
+  description = "The GCP project id"
   type        = string
 }
 
