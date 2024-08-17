@@ -13,6 +13,7 @@ module "serviceauthcentral_manage_gcp" {
     source = "git::https://github.com/UnitVectorY-Labs/serviceauthcentral-manage-gcp-tofu.git?ref=main"
     name = "serviceauthcentral"
     project_id = var.project_id
+    artifact_registry_name = "ghcr"
     regions = ["us-east1"]
     region_db_names = {
         "us-east1" = "sac-us-east1"
@@ -54,12 +55,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_artifact_registry_host"></a> [artifact\_registry\_host](#input\_artifact\_registry\_host) | The name of the Artifact Registry repository | `string` | `"us-docker.pkg.dev"` | no |
+| <a name="input_artifact_registry_name"></a> [artifact\_registry\_name](#input\_artifact\_registry\_name) | The name of the Artifact Registry repository | `string` | n/a | yes |
+| <a name="input_artifact_registry_project_id"></a> [artifact\_registry\_project\_id](#input\_artifact\_registry\_project\_id) | The project to use for Artifact Registry. Will default to the project\_id if not set. | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the application | `string` | `"serviceauthcentral"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The GCP project id | `string` | n/a | yes |
 | <a name="input_region_db_names"></a> [region\_db\_names](#input\_region\_db\_names) | Map of regions to their respective database names | `map(string)` | n/a | yes |
 | <a name="input_regions"></a> [regions](#input\_regions) | List of regions where resources will be created | `list(string)` | n/a | yes |
 | <a name="input_sac_cors_origins"></a> [sac\_cors\_origins](#input\_sac\_cors\_origins) | The SAC\_CORS\_ORIGINS envirionment variable specifying the allowed origins | `string` | n/a | yes |
 | <a name="input_sac_issuer"></a> [sac\_issuer](#input\_sac\_issuer) | The SAC\_ISSUER envirionment variable specifying the issuer | `string` | n/a | yes |
+| <a name="input_serviceauthcentral_manage_tag"></a> [serviceauthcentral\_manage\_tag](#input\_serviceauthcentral\_manage\_tag) | The tag for the serviceauthcentral manage image to deploy | `string` | `"dev"` | no |
 
 ## Outputs
 
