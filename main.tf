@@ -25,6 +25,10 @@ resource "google_project_iam_member" "firestore_writer_role" {
   member  = "serviceAccount:${google_service_account.cloud_run_sa.email}"
 }
 
+locals {
+  final_artifact_registry_project_id = coalesce(var.artifact_registry_project_id, var.project_id)
+}
+
 # Deploy Cloud Run services in specified regions
 resource "google_cloud_run_v2_service" "serviceauthcentral-manage" {
   for_each = toset(var.regions)
@@ -37,8 +41,7 @@ resource "google_cloud_run_v2_service" "serviceauthcentral-manage" {
     service_account = google_service_account.cloud_run_sa.email
 
     containers {
-      # TODO: This is hard coded to pull in the dev image from GitHub, this should pull in a released version
-      image = "us-docker.pkg.dev/${var.project_id}/ghcr/unitvectory-labs/serviceauthcentral-manage:dev"
+      image = "${var.artifact_registry_host}/${local.final_artifact_registry_project_id}/${var.artifact_registry_name}/unitvectory-labs/serviceauthcentral-manage:${var.serviceauthcentral_manage_tag}"
 
       env {
         name  = "GOOGLE_CLOUD_PROJECT"

@@ -13,6 +13,7 @@ module "serviceauthcentral_manage_gcp" {
     source = "git::https://github.com/UnitVectorY-Labs/serviceauthcentral-manage-gcp-tofu.git?ref=main"
     name = "serviceauthcentral"
     project_id = var.project_id
+    artifact_registry_name = "ghcr"
     regions = ["us-east1"]
     region_db_names = {
         "us-east1" = "sac-us-east1"
