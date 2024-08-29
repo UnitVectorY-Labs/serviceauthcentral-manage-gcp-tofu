@@ -35,7 +35,7 @@ resource "google_cloud_run_v2_service" "serviceauthcentral-manage" {
   project  = var.project_id
   location = each.value
   name     = "${var.name}-manage-${each.value}"
-  ingress  = "INGRESS_TRAFFIC_INTERNAL_ONLY"
+  ingress  = "INGRESS_TRAFFIC_ALL"
 
   template {
     service_account = google_service_account.cloud_run_sa.email
