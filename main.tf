@@ -52,6 +52,10 @@ resource "google_cloud_run_v2_service" "serviceauthcentral-manage" {
         value = "prod,datamodel-gcp,datamodel-firestore"
       }
       env {
+        name  = "SAC_DATAMODEL_FIRESTORE_DATABASE"
+        value = var.region_db_names[each.value]
+      }
+      env {
         name  = "SAC_ISSUER"
         value = var.sac_issuer
       }
