@@ -45,7 +45,7 @@ resource "google_cloud_run_v2_service" "serviceauthcentral-manage" {
 
       env {
         name  = "GOOGLE_CLOUD_PROJECT"
-        value = "${var.name}-${each.value}"
+        value = var.project_id
       }
       env {
         name  = "SPRING_PROFILES_ACTIVE"
